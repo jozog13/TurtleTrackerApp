@@ -38,13 +38,14 @@ for lineString in line_list:
     # Assign variables to items in the lineData list
     record_id = lineData[0]   # ARGOS tracking record ID
     obs_date = lineData[2]   # Observation date
-    ob_lc = lineData[4]       # Observation Location Class
+    obs_lc = lineData[4]       # Observation Location Class
     obs_lat = lineData[6]     # Observation Latitude
     obs_lon = lineData[7]     # Observation Longitude
     
-    # Add items to dictionaries
-    date_dict[record_id] = obs_date
-    location_dict[record_id] = (obs_lat, obs_lon)
+    # Add items to dictionaries, if lc criteria is met
+    if obs_lc in ('1', '2', '3'):
+        date_dict[record_id] = obs_date
+        location_dict[record_id] = (obs_lat, obs_lon)
     
     
     # Print information to the use
